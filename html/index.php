@@ -1,5 +1,11 @@
+<?php 
+    //Include the config page
+    include_once("../config/constants.php");
+    ?>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
         <!-- Required meta tags always come first -->
         <meta charset="utf-8">
@@ -13,12 +19,92 @@
         <script src="https://kit.fontawesome.com/7cdbf977a6.js" crossorigin="anonymous"></script>
 
         <link href="../css/styles.css" type="text/css" rel="stylesheet" />
-        
+
         <title>Cereal Tracker</title>
     </head>
     <body>
-        <div id="first">
+        <!-- <div id="first">
             Let's track some 
+        </div> -->
+        <!-- Put everything in a container div for organization -->
+        <div class="container">
+            <!-- Div for page title -->
+            <div class="row justify-content-center">
+                <h1 class="text-center m-2">Cereal Tracker</h1>
+            </div>
+            <!-- Div for cereal boxes -->
+            <div class="row justify-content-around">
+            
+            <?php
+                //Check if the database has already been created
+                $con = new mysqli(LOCALHOST, DB_USERNAME, DB_PASSWORD);
+                if ($con->connect_error){
+                    die("Connection failed!");
+                }
+                else {
+                    $dbSel = mysqli_select_db( $con, DATABASE);        
+                    if($dbSel) {
+                        ?>
+
+                <script type="text/javascript">
+                    console.log("Connected!");
+                </script>
+
+            <?php
+            //Get all items from the table
+            $sqlSelAll = "SELECT * FROM " . CEREAL;
+            $res = $con->query($sqlSelAll);
+
+            //Print them all on the screen
+            if($res == TRUE) {
+                //Count the rows to ensure there are cereals to add
+                $count = $res->num_rows;
+                if($count > 0) {
+                    while($row = $res->fetch_assoc()) {
+                        $cereal_ID = $row['cereal_ID'];
+                        $name = $row['name'];
+                        $numBoxes = $row['numBoxes'];
+                        $boxBowls = $row['boxBowls'];
+                        $eatBowls = $row['eatBowls'];
+                        $totBowls = $row['totBowls'];
+                        $remBowls = $row['remBowls'];
+                        $img = $row['img'];
+
+                        ?>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <a href="bowls.php?cereal_ID=<?php echo $cereal_ID; ?>">
+                        <img src="../img/<?php echo $img; ?>" class="d-block w-100 mx-auto rounded" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
+                        <h3 class="w-100 text-center"><?php echo $name; ?></h3>
+                    </a>
+                </div>
+                        <?php
+
+                    }
+                }
+                else {
+                    ?>
+                    <script type="text/javascript">
+                        alert("Count is 0");
+                    </script>
+                    <?php
+                }
+
+            }
+            else {
+                echo " this is why";
+            }
+        }
+        else {
+            echo "Table does not exist" . $con->error;
+        }
+
+
+    }
+    $con->close();
+?>
+                
+
+            </div>
         </div>
 
         <!-- Include jQuery, Bootstrap, and popper libraries along with your js pages -->
