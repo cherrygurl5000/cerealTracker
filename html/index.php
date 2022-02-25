@@ -29,7 +29,7 @@
         <!-- Put everything in a container div for organization -->
         <div class="container">
             <!-- Div for page title -->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center my-3">
                 <h1 class="text-center m-2">Cereal Tracker</h1>
             </div>
             <!-- Div for cereal boxes -->
@@ -71,10 +71,10 @@
                         $img = $row['img'];
 
                         ?>
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-3 mb-2">
                     <a href="bowls.php?cereal_ID=<?php echo $cereal_ID; ?>">
-                        <img src="../img/<?php echo $img; ?>" class="d-block w-100 mx-auto rounded" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
-                        <h3 class="w-100 text-center"><?php echo $name; ?></h3>
+                        <img src="../img/<?php echo $img; ?>" class="d-block w-100 mx-auto rounded hov" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
+                        <h3 class="w-100 h-100 text-center mt-2"><?php echo $name; ?></h3>
                     </a>
                 </div>
                         <?php
@@ -102,6 +102,20 @@
     }
     $con->close();
 ?>
+                
+                <div class="col-12 col-sm-6 col-md-3 mb-2">
+                    <a href="addCereal.php">
+                        <div class="imageStack">
+                            <div class="imageStack_item imageStack_item__bottom">
+                                <img src="../img/nopic.jpg" class="d-block w-100 mx-auto rounded" title="Add Cereal" alt="Add Cereal" />
+                            </div>
+                            <div class="imageStack_item imageStack_item__top">
+                                <img src="../img/addingT.png" class="d-block w-100 mx-auto rounded" id="adding" />
+                            </div>
+                        </div>
+                        <p class="w-100 h-100 text-center mt-3">Add Cereal</p>
+                    </a>
+                </div>
                 
 
             </div>

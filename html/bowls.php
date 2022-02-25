@@ -1,3 +1,38 @@
+<?php
+    //Include the constants.php file
+    include('../config/constants.php');
+
+    //Check if the cereal_ID was set
+    if(isset($_GET['cereal_ID']) == FALSE) {
+        //Redirect to index.php
+        $_SESSION['cerealFail'] = "No Cereal Chosen";
+        header("location: ../" . HOME);
+    }
+    else {
+        $cereal_ID = $_GET['cereal_ID'];
+
+        //Connect to the database to display the items on the page
+        $con = new mysqli(LOCALHOST, DB_USERNAME, DB_PASSWORD, DATABASE);
+
+        //Display the contents of the selected cereal
+        $sqlCereal = "SELECT * FROM " . CEREAL . " WHERE cereal_ID = $cereal_ID";
+        $res = $con->query($sqlCereal);
+
+        if($res == TRUE) {
+            while($row = $res->fetch_assoc()) {
+                $name = $row['name'];
+                $numBoxes = $row['numBoxes'];
+                $boxBowls = $row['boxBowls'];
+                $eatBowls = $row['eatBowls'];
+                $totBowls = $row['totBowls'];
+                $remBowls = $row['remBowls'];
+                $img = $row['img'];
+            }
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -14,7 +49,7 @@
 
         <link href="../css/styles.css" type="text/css" rel="stylesheet" />
 
-        <title>Cinnamon Crunch Squares</title>
+        <title><?php echo $name; ?></title>
     </head>
     <body>
         <!-- <div id="first">
@@ -24,34 +59,36 @@
         <div class="container">
             <!-- Div for page title -->
             <div class="row justify-content-center">
-                <h1 class="text-center m-2">Cinnamon Crunch Squares</h1>
+                <h1 class="text-center my-3"><?php echo $name; ?></h1>
             </div>
             <!-- Div for cereal boxes -->
             <div class="row justify-content-around">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <img src="../img/cinnamonCrunchSquares.jpg" class="d-block w-100 mx-auto rounded" title="Cinnamon Crunch Squares" alt="Cinnamon Crunch Squares" />
+                    <img src="../img/<?php echo $img; ?>" class="d-block w-100 mx-auto rounded" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
                 </div>
             </div>
+            <hr />
             <div class="row justify-content-center mt-3">
                 <h1 class="col-6 text-right">Remaining Bowls</h1>
-                <h1 class="col-5 ml-4"><small>2</small></h1>
+                <h1 class="col-5 ml-4"><small><?php echo $remBowls; ?></small></h1>
                 <input type="text" id="remBowls" name="remBowls" class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Total Boxes</h1>
-                <h1 class="col-5 ml-4"><small>2</small></h1>
+                <h1 class="col-5 ml-4"><small><?php echo $totBowls; ?></small></h1>
                 <input type="text" id="totBowls" name="totBowls" class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Bowls/Box</h1>
-                <h1 class="col-5 ml-4"><small>3</small></h1>
+                <h1 class="col-5 ml-4"><small><?php echo $boxBowls; ?></small></h1>
                 <input type="text" id="boxBowls" name="boxBowls" class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Bowls Eaten</h1>
-                <h1 class="col-5 ml-4"><small>0</small></h1>
+                <h1 class="col-5 ml-4"><small><?php echo $eatBowls; ?></small></h1>
                 <input type="text" id="eatBowls" name="eatBowls" class="col-5 ml-4 d-none"/>
             </div>
+            <hr />
             <div class="row justify-content-center mt-3">
                 <button type="button" onclick="editCereal()" id="edit" name="edit" class="btn btn-primary mr-2">Edit</button>
                 <button type="button" onclick="deleteCereal()" id="delete" name="delete" class="btn btn-warning">Delete</button>
