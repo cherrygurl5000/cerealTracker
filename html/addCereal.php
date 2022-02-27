@@ -1,3 +1,8 @@
+<?php 
+    //Include the constants
+    include("../config/constants.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -16,6 +21,9 @@
         <link href="../css/styles.css" type="text/css" rel="stylesheet" />
 
         <title>Add Cereal</title>
+
+        
+
     </head>
     <body>
         <!-- <div id="first">
@@ -28,7 +36,7 @@
                 <h1 class="text-center my-3">Add Cereal</h1>
             </div>
             <!-- Div for cereal boxes -->
-            <form action="../html/addingCereal.php" method="POST">
+            <form action="../html/addingCereal.php" method="POST" id="addCerealForm" onsubmit="return validName()">
                 <div class="row justify-content-around">
                     <div class="col-12 col-sm-6 col-md-3">
                         <input type="file" class="mb-3" id="pic" name="pic" accept="image/*" onchange="showUpload(event)" />
@@ -42,11 +50,11 @@
                 </div>
                 <div class="row justify-content-center mt-3">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Remaining Bowls" data-content="Please enter the number of boxes">Number of Boxes</a>
-                    <input type="number" step="1" min="0" value="0" id="numBoxes" name="numBoxes" onchange="bowlCount()" class="col-5 ml-4" required/>
+                    <input type="number" step="1" min="0" value="0" id="numBoxes" name="numBoxes" onchange="bowlCount()" class="col-5 ml-4"/>
                 </div>
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Bowls per Box" data-content="Please enter the estimated number of bowls in a box">Bowls/Box</a>
-                    <input type="number" step="1" min="1" value="6" id="boxBowls" name="boxBowls" onchange="bowlCount()" class="col-5 ml-4" required/>
+                    <input type="number" step="1" min="1" max="20" value="6" id="boxBowls" name="boxBowls" onchange="bowlCount()" class="col-5 ml-4"/>
                 </div>
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Bowls Eaten" data-content="Please enter the number of bowls already eaten">Bowls Eaten</a>
@@ -55,10 +63,12 @@
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Total Bowls" data-content="Total Number of Bowls will be calculated">Total Bowls</a>
                     <input type="number" step="1" min="0" id="totBowls" name="totBowls" class="col-5 ml-4" disabled="disabled"/>
+                    <input type="hidden" id="nTotBowls" name="nTotBowls" />
                 </div>
                 <div class="row justify-content-center mt-3">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Remaining Bowls" data-content="Remaining bowls will be calculated">Remaining Bowls</a>
                     <input type="number" step="1" min="0" id="remBowls" name="remBowls" class="col-5 ml-4" disabled="disabled"/>
+                    <input type="hidden" id="nRemBowls" name="nRemBowls" />
                 </div>
                 <hr />
                 <div class="row justify-content-center mt-3">
@@ -67,6 +77,21 @@
                 </div>
             </form>
 
+            <?php 
+                //Add an alert about why the add didn't work
+                if(isset($_SESSION['addCerealFail'])) {
+                    ?>            
+                <script type="text/javascript">
+                    var b = `<?php echo $_SESSION['addCerealFail']; ?>`;
+                    alert(b);
+                </script>
+                <?php
+                    unset($_SESSION['addCerealFail']);
+                }
+            ?>
+                
+
+                    
 
 
         </div>
