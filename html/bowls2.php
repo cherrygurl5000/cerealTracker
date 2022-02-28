@@ -60,33 +60,35 @@
             <!-- Div for page title -->
             <div class="row justify-content-center">
                 <h1 class="text-center my-3"><?php echo $name; ?></h1>
+                <input type="hidden" id="nameInput" name="nameInput" />
             </div>
             <!-- Div for cereal boxes -->
             <div class="row justify-content-around">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <img src="../img/<?php echo $img; ?>" class="d-block w-100 mx-auto rounded" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
+                    <input type="file" class="mb-3 d-none" id="pic" name="pic" accept="image/*" onchange="showUpload(event)" />
+                    <img src="../img/<?php echo $img; ?>" id="uploaded" name="uploaded" class="d-block w-100 mx-auto rounded" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" />
                 </div>
             </div>
             <hr />
             <div class="row justify-content-center mt-3">
                 <h1 class="col-6 text-right">Remaining Bowls</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $remBowls; ?></small></h1>
-                <input type="text" id="remBowls" name="remBowls" class="col-5 ml-4 d-none"/>
+                <input type="number" id="remBowls" name="remBowls" value=<?php echo $remBowls; ?> class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Total Boxes</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $totBowls; ?></small></h1>
-                <input type="text" id="totBowls" name="totBowls" class="col-5 ml-4 d-none"/>
+                <input type="number" id="totBowls" name="totBowls" value=<?php echo $totBowls; ?> class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Bowls/Box</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $boxBowls; ?></small></h1>
-                <input type="text" id="boxBowls" name="boxBowls" class="col-5 ml-4 d-none"/>
+                <input type="number" id="boxBowls" name="boxBowls" value=<?php echo $boxBowls; ?> class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Bowls Eaten</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $eatBowls; ?></small></h1>
-                <input type="text" id="eatBowls" name="eatBowls" class="col-5 ml-4 d-none"/>
+                <input type="number" id="eatBowls" name="eatBowls" value=<?php echo $eatBowls; ?> class="col-5 ml-4 d-none"/>
             </div>
             <hr />
             <div class="row justify-content-center mt-3" id="btns" name="btns">

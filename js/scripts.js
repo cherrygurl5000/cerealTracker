@@ -7,10 +7,44 @@ $(function () {
 });
 
 //Create a function that allows the cereal inputs to be edited
-function editCereal() {}
+function editCereal() {
+  $(":number, :file").removeClass("d-none");
+  $("h1:nth-of-type(2)").addClass(" d-none");
+}
 
 //Create a function that allows the cereal to be deleted
-function deleteCereal() {}
+function deleteCereal() {
+  $("#delete").attr({ "data-toggle": "modal", "data-target": "#delModal" });
+  $("#delete").after(
+    `
+  <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delModalLabel">Delete ` +
+      cerealName +
+      `</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete ` +
+      cerealName +
+      `</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="location.href='../html/deleteCereal.php?cereal_ID=` +
+      cereal_ID +
+      `'">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+  );
+}
 
 //Functions for calculating the total bowls and the remaining bowls
 function bowlCount() {

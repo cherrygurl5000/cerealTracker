@@ -123,7 +123,7 @@
 
         <!-- Check if the cereal was added successfully -->
         <?php 
-                //Add an alert about adding the ceral
+                //Add an alert about adding the cereal
                 if(isset($_SESSION['addCerealPass'])) {
                     ?>            
                 <script type="text/javascript">
@@ -132,6 +132,16 @@
                 </script>
                 <?php
                     unset($_SESSION['addCerealPass']);
+                }
+                //Add an alert about deleting the ceral
+                if(isset($_SESSION['delCerealPass'])) {
+                    ?>            
+                <script type="text/javascript">
+                    var c = `<?php echo $_SESSION['delCerealPass']; ?>`;
+                    alert(c);
+                </script>
+                <?php
+                    unset($_SESSION['delCerealPass']);
                 }
             ?>
         <!-- Include jQuery, Bootstrap, and popper libraries along with your js pages -->
