@@ -36,7 +36,7 @@
                 <h1 class="text-center my-3">Add Cereal</h1>
             </div>
             <!-- Div for cereal boxes -->
-            <form action="../html/addingCereal.php" method="POST" id="addCerealForm" onsubmit="return validName()">
+            <form action="../html/addingCereal.php" method="POST" id="addCerealForm" onsubmit="return validName()" enctype="multipart/form-data">
                 <div class="row justify-content-around">
                     <div class="col-12 col-sm-6 col-md-3">
                         <input type="file" class="mb-3" id="pic" name="pic" accept="image/*" onchange="showUpload(event)" />

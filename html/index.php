@@ -121,6 +121,19 @@
             </div>
         </div>
 
+        <!-- Check if the cereal was added successfully -->
+        <?php 
+                //Add an alert about adding the ceral
+                if(isset($_SESSION['addCerealPass'])) {
+                    ?>            
+                <script type="text/javascript">
+                    var b = `<?php echo $_SESSION['addCerealPass']; ?>`;
+                    alert(b);
+                </script>
+                <?php
+                    unset($_SESSION['addCerealPass']);
+                }
+            ?>
         <!-- Include jQuery, Bootstrap, and popper libraries along with your js pages -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

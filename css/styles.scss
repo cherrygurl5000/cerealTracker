@@ -31,8 +31,22 @@ body {
     transform: scale(1.1);
   }
 }
-.hov:hover {
-  transform: scale(1.1);
+.hov {
+  &:hover {
+    transform: scale(1.1);
+  }
+  /*//Clip the title if it is too long
+  & + h3 {
+    white-space: nowrap;
+    width: 120%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      overflow: visible;
+      background-color: white;
+      width: fit-content;
+    }
+  }*/
 }
 .heading {
   border: none;
