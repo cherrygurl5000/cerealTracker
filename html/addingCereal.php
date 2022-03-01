@@ -65,8 +65,9 @@
             echo "Sorry, file already exists.";
             $uploadOk = 0;
             $img = $fName;
-
-            // Check file size
+        }
+        // Check file size
+        else {
             if ($fSize > 5000000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;

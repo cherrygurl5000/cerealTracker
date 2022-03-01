@@ -90,7 +90,7 @@
             </div>
             <hr />
             <div class="row justify-content-center mt-3" id="btns" name="btns">
-                <button type="button" onclick="editCereal()" id="edit" name="edit" class="btn btn-primary mr-2">Edit</button>
+                <button type="button" onclick="location.href='../html/editCereal.php?cereal_ID=<?php echo $cereal_ID; ?>'" id="edit" name="edit" class="btn btn-primary mr-2">Edit</button>
                 <button type="button" onclick="deleteCereal()" id="delete" name="delete" class="btn btn-warning">Delete</button>
             </div>
             <script type="text/javascript">

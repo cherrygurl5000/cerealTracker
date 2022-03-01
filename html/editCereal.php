@@ -50,45 +50,43 @@
 
         <link href="../css/styles.css" type="text/css" rel="stylesheet" />
 
-        <title>Edit Cereal</title>
+        <title>Edit <?php echo $name; ?></title>
 
         
 
     </head>
     <body>
-        <!-- <div id="first">
-            Let's track some 
-        </div> -->
         <!-- Put everything in a container div for organization -->
         <div class="container">
             <!-- Div for page title -->
             <div class="row justify-content-center">
-                <h1 class="text-center my-3">Add Cereal</h1>
+                <h1 class="text-center my-3"><?php echo $name; ?></h1>
             </div>
             <!-- Div for cereal boxes -->
-            <form action="../html/addingCereal.php" method="POST" id="addCerealForm" onsubmit="return validName()" enctype="multipart/form-data">
+            <form action="../html/editingCereal.php?cereal_ID=<?php echo $cereal_ID; ?>" method="POST" id="editCerealForm" onsubmit="return validName()" enctype="multipart/form-data">
                 <div class="row justify-content-around">
                     <div class="col-12 col-sm-6 col-md-3">
                         <input type="file" class="mb-3" id="pic" name="pic" accept="image/*" onchange="showUpload(event)" />
-                        <img src="../img/nopic.jpg" id="uploaded" name="uploaded" class="d-block w-100 mx-auto rounded" />
+                        <img src="../img/<?php echo $img; ?>" id="uploaded" name="uploaded" class="d-block w-100 mx-auto rounded" />
+                        <input type="hidden" id="hidImg" name="hidImg" value="<?php echo $img; ?>" />
                     </div>
                 </div>
                 <hr />
                 <div class="row justify-content-center mt-3">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Cereal Name" data-content="Please enter the name of the cereal">Cereal Name</a>
-                    <input type="text" id="name" name="name" class="col-5 ml-4" required />
+                    <input type="text" id="name" name="name" value="<?php echo $name; ?>" class="col-5 ml-4" required />
                 </div>
                 <div class="row justify-content-center mt-3">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Remaining Bowls" data-content="Please enter the number of boxes">Number of Boxes</a>
-                    <input type="number" step="1" min="0" value="0" id="numBoxes" name="numBoxes" onchange="bowlCount()" class="col-5 ml-4"/>
+                    <input type="number" step="1" min="0" value="<?php echo $numBoxes; ?>" id="numBoxes" name="numBoxes" onchange="bowlCount()" class="col-5 ml-4"/>
                 </div>
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Bowls per Box" data-content="Please enter the estimated number of bowls in a box">Bowls/Box</a>
-                    <input type="number" step="1" min="1" max="20" value="6" id="boxBowls" name="boxBowls" onchange="bowlCount()" class="col-5 ml-4"/>
+                    <input type="number" step="1" min="1" max="20" value="<?php echo $boxBowls; ?>" id="boxBowls" name="boxBowls" onchange="bowlCount()" class="col-5 ml-4"/>
                 </div>
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Bowls Eaten" data-content="Please enter the number of bowls already eaten">Bowls Eaten</a>
-                    <input type="number" step="1" min="0" value="0" id="eatBowls" name="eatBowls" onchange="bowlCount()" class="col-5 ml-4"/>
+                    <input type="number" step="1" min="0" value="<?php echo $eatBowls; ?>" id="eatBowls" name="eatBowls" onchange="bowlCount()" class="col-5 ml-4"/>
                 </div>
                 <div class="row justify-content-center mt-2">
                     <a tabindex="0" role="button" class="col-5 text-right heading" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" title="Total Bowls" data-content="Total Number of Bowls will be calculated">Total Bowls</a>
@@ -102,7 +100,7 @@
                 </div>
                 <hr />
                 <div class="row justify-content-center mt-3">
-                    <button type="submit" id="addCereal" name="addCereal" class="btn btn-primary mr-2">Save</button>
+                    <button type="submit" id="editCereal" name="editCereal" class="btn btn-primary mr-2">Save</button>
                     <a tabindex="0" role="button" onclick="addCancel()" id="addCancel" name="addCancel" class="btn btn-warning">Cancel</a>
                 </div>
             </form>
