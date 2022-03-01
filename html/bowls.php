@@ -74,10 +74,15 @@
                 <input type="text" id="remBowls" name="remBowls" class="col-5 ml-4 d-none"/>
             </div>
             <div class="row justify-content-center">
+                <h1 class="col-6 text-right"># of Boxes</h1>
+                <h1 class="col-5 ml-4"><small><?php echo $numBoxes; ?></small></h1>
+                <input type="text" id="numBoxes" name="numBoxes" class="col-5 ml-4 d-none"/>
+            </div>
+            <!-- <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Total Boxes</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $totBowls; ?></small></h1>
                 <input type="text" id="totBowls" name="totBowls" class="col-5 ml-4 d-none"/>
-            </div>
+            </div> -->
             <div class="row justify-content-center">
                 <h1 class="col-6 text-right">Bowls/Box</h1>
                 <h1 class="col-5 ml-4"><small><?php echo $boxBowls; ?></small></h1>
